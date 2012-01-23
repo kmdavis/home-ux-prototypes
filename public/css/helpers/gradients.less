@@ -1,0 +1,64 @@
+#gradient {
+  .native(@string: none) {
+    background-image: -webkit-linear-gradient(@string); // Chrome10, Safari5.1
+    background-image:    -moz-linear-gradient(@string); // FF 3.6
+    background-image:     -ms-linear-gradient(@string); // IE10
+    background-image:      -o-linear-gradient(@string); // Opera 11.10
+    background-image:         linear-gradient(@string); // W3C
+  }
+
+  .horizontal(@from: #000, @to: #fff) {
+    background: (@from + @to) / 2;
+    background-image: e(%("url(data:image/svg+xml,%s)", escape(%('<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 1 1" preserveAspectRatio="none"><linearGradient id="gradient" gradientUnits="userSpaceOnUse" x1="0%" y1="0%" x2="100%" y2="0%"><stop stop-color="%d" offset="0"/><stop stop-color="%d" offset="0"/></linearGradient><rect x="0" y="0" fill="url(#gradient)" width="1" height="1"/></svg>', @from, @to)))); // IE9, Opera 9
+    background-image: -webkit-gradient(linear, left top, right top, from(@from), to(@to)); // Safari4 -- DEPRECATED
+    #gradient .native(e(%("left, %d, %d", @from, @to)));
+  }
+
+  .horizontal-three-colors(@from: #000, @midColor: #888, @to: #fff, @midStop: 50%) {
+    background: (@from + @to) / 2;
+    background-image: e(%("url(data:image/svg+xml,%s)", escape(%('<svg xmlns="http://www.w3.org/2000/svg" version="1.0"><defs><linearGradient id="gradient" x1="0" y1="0" x2="100%" y2="0%"><stop offset="0%" style="stop-color: %d;"/><stop offset="%d" style="stop-color: %d;"/><stop offset="100%" style="stop-color: %d;"/></linearGradient></defs><rect x="0" y="0" fill="url(#gradient)" width="100%" height="100%" /></svg>', @from, @midStop, @midColor, @to))));
+    background-image: -webkit-gradient(linear, left top, right top, color-stop(0.0,  @from), color-stop(@midStop,  @midColor), color-stop(1.0,  @to)); // Safari4 -- DEPRECATED
+    #gradient .native(e(%("left, %d, %d %d, %d", @from, @midColor, @midStop, @to)));
+  }
+
+  .vertical(@from: #000, @to: #fff) {
+    background: (@from + @to) / 2;
+    background-image: e(%("url(data:image/svg+xml,%s)", escape(%('<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 1 1" preserveAspectRatio="none"><linearGradient id="gradient" gradientUnits="userSpaceOnUse" x1="0%" y1="0%" x2="0%" y2="100%"><stop stop-color="%d" offset="0"/><stop stop-color="%d" offset="0"/></linearGradient><rect x="0" y="0" fill="url(#gradient)" width="1" height="1"/></svg>', @from, @to)))); // IE9, Opera 9
+    background-image: -webkit-gradient(linear, left top, left bottom, from(@from), to(@to)); // Safari4 -- DEPRECATED
+    #gradient .native(e(%("top, %d, %d", @from, @to)));
+  }
+
+  .vertical-three-colors(@from: #000, @midColor: #888, @to: #fff, @midStop: 50%) {
+    background: (@from + @to) / 2;
+    background-image: e(%("url(data:image/svg+xml,%s)", escape(%('<svg xmlns="http://www.w3.org/2000/svg" version="1.0"><defs><linearGradient id="gradient" x1="0" y1="0" x2="0" y2="100%"><stop offset="0%" style="stop-color: %d;"/><stop offset="%d" style="stop-color: %d;"/><stop offset="100%" style="stop-color: %d;"/></linearGradient></defs><rect x="0" y="0" fill="url(#gradient)" width="100%" height="100%" /></svg>', @from, @midStop, @midColor, @to))));
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.0,  @from), color-stop(@midStop,  @midColor), color-stop(1.0,  @to)); // Safari4 -- DEPRECATED
+    #gradient .native(e(%("top, %d, %d %d, %d", @from, @midColor, @midStop, @to)));
+  }
+
+  .vertical-four-colors(@from: #000, @midColor1: #555, @midColor2: #aaa, @to: #fff, @midStop1: 33%, @midStop2: 67%) {
+    background: (@from + @to) / 2;
+    background-image: e(%("url(data:image/svg+xml,%s)", escape(%('<svg xmlns="http://www.w3.org/2000/svg" version="1.0"><defs><linearGradient id="gradient" x1="0" y1="0" x2="0" y2="100%"><stop offset="0%" style="stop-color: %d;"/><stop offset="%d" style="stop-color: %d;"/><stop offset="%d" style="stop-color: %d;"/><stop offset="100%" style="stop-color: %d;"/></linearGradient></defs><rect x="0" y="0" fill="url(#gradient)" width="100%" height="100%" /></svg>', @from, @midStop1, @midColor1, @midStop2, @midColor2, @to))));
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.0,  @from), color-stop(@midStop1,  @midColor1), color-stop(@midStop2,  @midColor2), color-stop(1.0,  @to)); // Safari4 -- DEPRECATED
+    #gradient .native(e(%("top, %d, %d %d, %d %d, %d", @from, @midColor1, @midStop1, @midColor2, @midStop2, @to)));
+  }
+
+  .vertical-five-colors(@from: #000, @midColor1: #404040, @midColor2: #808080, @midColor3: #c0c0c0, @to: #fff, @midStop1: 25%, @midStop2: 50%, @midStop3: 75%) {
+    background: (@from + @to) / 2;
+    background-image: e(%("url(data:image/svg+xml,%s)", escape(%('<svg xmlns="http://www.w3.org/2000/svg" version="1.0"><defs><linearGradient id="gradient" x1="0" y1="0" x2="0" y2="100%"><stop offset="0%" style="stop-color: %d;"/><stop offset="%d" style="stop-color: %d;"/><stop offset="%d" style="stop-color: %d;"/><stop offset="%d" style="stop-color: %d;"/><stop offset="100%" style="stop-color: %d;"/></linearGradient></defs><rect x="0" y="0" fill="url(#gradient)" width="100%" height="100%" /></svg>', @from, @midStop1, @midColor1, @midStop2, @midColor2, @midStop3, @midColor3, @to))));
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.0,  @from), color-stop(@midStop1,  @midColor1), color-stop(@midStop2,  @midColor2), color-stop(@midStop3,  @midColor3), color-stop(1.0,  @to)); // Safari4 -- DEPRECATED
+    #gradient .native(e(%("top, %d, %d %d, %d %d, %d %d, %d", @from, @midColor1, @midStop1, @midColor2, @midStop2, @midColor3, @midStop3, @to)));
+  }
+
+  .radial(@from: #000, @to: #fff, @x: 50%, @y: 50%, @shape: ellipse) {
+    background: @from; // (@from + @to) / 2;
+    background-image: -webkit-radial-gradient(@x @y, @shape, @from, @to);
+    background-image:    -moz-radial-gradient(@x @y, @shape, @from, @to);
+    background-image:         radial-gradient(@x @y, @shape, @from, @to);
+  }
+}
+
+// For Backwards Compatibility:
+.background_gradient(@from:#000,@to:#fff){#gradient>.vertical(@from,@to);}
+.background_gradient_3(@from:#000,@mid:#888,@to:#fff){#gradient>.vertical-three-colors(@from,@mid,@to);}
+.background_gradient_4(@from:#000,@stop1:#555,@stop2:#aaa,@to:#fff){#gradient>.vertical-four-colors(@from,@stop1,@stop2,@to);}
+.background_gradient_5(@from:#000,@stop1:#404040,@stop2:#808080,@stop3:#c0c0c0,@to:#fff){#gradient>.vertical-five-colors(@from,@stop1,@stop2,@stop3,@to);}

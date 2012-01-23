@@ -1,0 +1,23 @@
+{
+  "name": "home_ux_prototype",
+  "version": "0.1.0",
+  "repository": {
+    "type" : "git",
+    "url" : "http://github.com/kmdavis/home_ux_prototype.git"
+  },
+  "directories": {
+  },
+  "engines": {
+    "node": "*"
+  },
+  "dependencies": {
+    "less": "1.1.5",
+    "less4clients": "*",
+    "underscore": "*",
+    "express": "*",
+    "express-namespace": "*",
+    "coffeekup": "*",
+    "commander": "*",
+    "coffee-script": "*"
+  }
+}

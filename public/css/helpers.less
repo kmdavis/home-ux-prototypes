@@ -1,0 +1,97 @@
+@import "helpers/border_radius.less";
+@import "helpers/shadow.less";
+@import "helpers/gradients.less";
+
+.background-clip() {
+  -webkit-background-clip: padding-box;
+     -moz-background-clip: padding-box;
+      -ms-background-clip: padding-box;
+       -o-background-clip: padding-box;
+          background-clip: padding-box;
+}
+
+.columns(@count: 2, @gap: 20px) {
+  -webkit-column-count: @count;
+     -moz-column-count: @count;
+      -ms-column-count: @count;
+       -o-column-count: @count;
+          column-count: @count;
+  -webkit-column-gap: @gap;
+     -moz-column-gap: @gap;
+      -ms-column-gap: @gap;
+       -o-column-gap: @gap;
+          column-gap: @gap;
+}
+
+.opacity(@op: 100) {
+  -khtml-opacity: @op/100;
+    -moz-opacity: @op/100;
+         opacity: @op/100;
+  filter: e(%("alpha(opacity=%s)", @op));
+}
+
+.transition(@range: all, @time: 1s, @ease: ease-in-out) {
+  -webkit-transition: @range @time @ease;
+     -moz-transition: @range @time @ease;
+      -ms-transition: @range @time @ease;
+       -o-transition: @range @time @ease;
+          transition: @range @time @ease;
+}
+
+#transform {
+  .native(@transform: none) {
+    -webkit-transform: @transform;
+       -moz-transform: @transform;
+        -ms-transform: @transform;
+         -o-transform: @transform;
+            transform: @transform;
+  }
+
+  .skew(@angle_x: 35, @angle_y: 0) {
+    #transform .native(skew(e(%("%ddeg", @angle_x)), e(%("%ddeg", @angle_y))));
+  }
+
+  .scale(@scale: 1) {
+    #transform .native(scale(@scale));
+  }
+
+  .rotate(@angle: 45) {
+    #transform .native(rotate(e(%("%ddeg", @angle))));
+  }
+
+  .translate(@move_x: 10px, @move_y: 10px) {
+    #transform .native(translate(@move_x, @move_y));
+  }
+
+  .origin(@origin: center) {
+    -webkit-transform-origin: @origin;
+       -moz-transform-origin: @origin;
+        -ms-transform-origin: @origin;
+         -o-transform-origin: @origin;
+            transform-origin: @origin;
+  }
+}
+
+.transparent-background(@color: #000, @percent: 70) {
+  background: @color;
+  filter: e(%("alpha(opacity=%s)", ((100 - @percent) / 2) + @percent));
+  background: fadeout(@color, 100 - @percent);
+}
+
+.user-select(@state: none) {
+  -webkit-user-select: @state;
+     -moz-user-select: @state;
+      -ms-user-select: @state;
+       -o-user-select: @state;
+          user-select: @state;
+}
+
+// For Backwards Compatibility:
+.background_clip(){.background-clip();}
+.text-shadow(@shadow_color:#fff){#shadow .text(@shadow_color);}
+.transparent_background(@color:#000,@percent:70){.transparent-background(@color,@percent);}
+.user_select(@state:none){.user-select(@state);}
+.skew(@angle_x:35,@angle_y:0){#transform .skew(@angle_x,@angle_y);}
+.scale(@scale_x:1){#transform .scale(@scale_x);}
+.rotate(@angle:45){#transform .rotate(@angle);}
+.translate(@move_x:10px,@move_y:10px){#transform .translate(@move_x,@move_y);}

@@ -1,0 +1,184 @@
+#shadow {
+  .text(@color: #fff) {
+    text-shadow: 0 1px 0 @color;
+  }
+
+  .box(@string: 0 0 0 #000) {
+    -webkit-box-shadow: @string;
+       -moz-box-shadow: @string;
+        -ms-box-shadow: @string;
+         -o-box-shadow: @string;
+            box-shadow: @string;
+  }
+
+  .outset {
+    .all(@shadow_x: 3px, @shadow_y: 3px, @shadow_rad: 3px, @shadow_spread: 0, @shadow_color: #888) {
+      #shadow .box(@shadow_x @shadow_y @shadow_rad @shadow_spread @shadow_color);
+    }
+
+    .one-side {
+      .top(@width: 2px, @radius: 3px, @spread: 0, @color: #888) {
+        #shadow .box(0 -@width @radius @spread @color);
+      }
+
+      .bottom(@width: 2px, @radius: 3px, @spread: 0, @color: #888) {
+        #shadow .box(0 @width @radius @spread @color);
+      }
+
+      .left(@width: 2px, @radius: 3px, @spread: 0, @color: #888) {
+        #shadow .box(-@width 0 @radius @spread @color);
+      }
+
+      .right(@width: 2px, @radius: 3px, @spread: 0, @color: #888) {
+        #shadow .box(@width 0 @radius @spread @color);
+      }
+    }
+
+    .two-sides {
+      .top-bottom(@width: 2px, @radius: 3px, @spread: 0, @color: #888) {
+        @tmp: 0 @width @radius @spread @color, 0 -@width @radius @spread @color;
+        #shadow .box(@tmp);
+      }
+      
+      .left-right(@width: 2px, @radius: 3px, @spread: 0, @color: #888) {
+        @tmp: @width 0 @radius @spread @color, -@width 0 @radius @spread @color;
+        #shadow .box(@tmp);
+      }
+    }
+
+    .corner {
+      .top-left(@width: 2px, @radius: 3px, @spread: 0, @color: #888) {
+        #shadow .box(-@width -@width @radius @spread @color);
+      }
+
+      .top-right(@width: 2px, @radius: 3px, @spread: 0, @color: #888) {
+        #shadow .box(@width -@width @radius @spread @color);
+      }
+
+      .bottom-left(@width: 2px, @radius: 3px, @spread: 0, @color: #888) {
+        #shadow .box(-@width @width @radius @spread @color);
+      }
+
+      .bottom-right(@width: 2px, @radius: 3px, @spread: 0, @color: #888) {
+        #shadow .box(@width @width @radius @spread @color);
+      }
+    }
+
+    .three-sides {
+      .top(@width: 2px, @radius: 3px, @spread: 0, @color: #888) {
+        @tmp: 0 -@width @radius @spread @color, @width -@width @radius @spread @color, -@width -@width @radius @spread @color;
+        #shadow .box(@tmp);
+      }
+
+      .bottom(@width: 2px, @radius: 3px, @spread: 0, @color: #888) {
+        @tmp: 0 @width @radius @spread @color, @width @width @radius @spread @color, -@width @width @radius @spread @color;
+        #shadow .box(@tmp);
+      }
+
+      .left(@width: 2px, @radius: 3px, @spread: 0, @color: #888) {
+        @tmp: -@width 0 @radius @spread @color, -@width @width @radius @spread @color, -@width -@width @radius @spread @color;
+        #shadow .box(@tmp);
+      }
+
+      .right(@width: 2px, @radius: 3px, @spread: 0, @color: #888) {
+        @tmp: @width 0 @radius @spread @color, @width @width @radius @spread @color, @width -@width @radius @spread @color;
+        #shadow .box(@tmp);
+      }
+    }
+
+    .four-sides(@width: 2px, @radius: 3px, @spread: 0, @color: #888) {
+      @tmp: @width @width @radius @spread @color, -@width @width @radius @spread @color, @width -@width @radius @spread @color, -@width -@width @radius @spread @color;
+      #shadow .box(@tmp);
+    }
+  }
+
+  .inset {
+    .all(@radius: 5px, @spread: 1px, @color: #888) {
+      #shadow .box(inset 0 0 @radius @spread @color);
+    }
+    
+    .one-side {
+      .top(@width: 2px, @radius: 3px, @spread: 0, @color: #888) {
+        #shadow .box(inset 0 (@width + @radius) @radius (@spread - @radius) @color);
+      }
+
+      .bottom(@width: 2px, @radius: 3px, @spread: 0, @color: #888) {
+        #shadow .box(inset 0 (-@width - @radius) @radius (@spread - @radius) @color);
+      }
+
+      .left(@width: 2px, @radius: 3px, @spread: 0, @color: #888) {
+        #shadow .box(inset (@width + @radius) 0 @radius (@spread - @radius) @color);
+      }
+
+      .right(@width: 2px, @radius: 3px, @spread: 0, @color: #888) {
+        #shadow .box(inset (-@width - @radius) 0 @radius (@spread - @radius) @color);
+      }
+    }
+    
+    .two-sides {
+      .top-bottom(@width: 2px, @radius: 3px, @spread: 0, @color: #888) {
+        @tmp: inset 0 (@width + @radius) @radius (@spread - @radius) @color, inset 0 (-@width - @radius) @radius (@spread - @radius) @color;
+        #shadow .box(@tmp);
+      }
+
+      .left-right(@width: 2px, @radius: 3px, @spread: 0, @color: #888) {
+        @tmp: inset (@width + @radius) 0 @radius (@spread - @radius) @color, inset (-@width - @radius) 0 @radius (@spread - @radius) @color;
+        #shadow .box(@tmp);
+      }
+    }
+    
+    .corner {
+      .top-left(@width: 2px, @radius: 3px, @spread: 0, @color: #888) {
+        #shadow .box(inset (@width + @radius) (@width + @radius) @radius (@spread - @radius) @color);
+      }
+
+      .top-right(@width: 2px, @radius: 3px, @spread: 0, @color: #888) {
+        #shadow .box(inset (-@width - @radius) (@width + @radius) @radius (@spread - @radius) @color);
+      }
+
+      .bottom-left(@width: 2px, @radius: 3px, @spread: 0, @color: #888) {
+        #shadow .box(inset (@width + @radius) (-@width - @radius) @radius (@spread - @radius) @color);
+      }
+
+      .bottom-right(@width: 2px, @radius: 3px, @spread: 0, @color: #888) {
+        #shadow .box(inset (-@width - @radius) (-@width - @radius) @radius (@spread - @radius) @color);
+      }
+    }
+    
+    .three-sides {
+      .top(@width: 2px, @radius: 3px, @spread: 0, @color: #888) {
+        @tmp: inset 0 (@width + @radius) @radius (@spread - @radius) @color, inset (@width + @radius) 0 @radius (@spread - @radius) @color, inset (-@width - @radius) 0 @radius (@spread - @radius) @color;
+        #shadow .box(@tmp);
+      }
+
+      .bottom(@width: 2px, @radius: 3px, @spread: 0, @color: #888) {
+        @tmp: inset 0 (-@width - @radius) @radius (@spread - @radius) @color, inset (@width + @radius) 0 @radius (@spread - @radius) @color, inset (-@width - @radius) 0 @radius (@spread - @radius) @color;
+        #shadow .box(@tmp);
+      }
+
+      .left(@width: 2px, @radius: 3px, @spread: 0, @color: #888) {
+        @tmp: inset (@width + @radius) 0 @radius (@spread - @radius) @color, inset 0 (@width + @radius) @radius (@spread - @radius) @color, inset 0 (-@width - @radius) @radius (@spread - @radius) @color;
+        #shadow .box(@tmp);
+      }
+
+      .right(@width: 2px, @radius: 3px, @spread: 0, @color: #888) {
+        @tmp: inset (-@width - @radius) 0 @radius (@spread - @radius) @color, inset 0 (@width + @radius) @radius (@spread - @radius) @color, inset 0 (-@width - @radius) @radius (@spread - @radius) @color;
+        #shadow .box(@tmp);
+      }
+    }
+  }
+}
+
+// For Backwards Compatibility:
+.box_shadow(@shadow_x:3px,@shadow_y:3px,@shadow_rad:3px,@shadow_spread:0,@shadow_color:#888){#shadow .outset .all(@shadow_x,@shadow_y,@shadow_rad,@shadow_spread,@shadow_color);}
+.inner_box_shadow(@shadow_x:0,@shadow_y:0,@shadow_rad:10px,@shadow_spread:0,@shadow_color:#888){#shadow .inset .all(@shadow_rad,@shadow_spread,@shadow_color);}
+.inner_box_shadow_left_right(@shadow_x:0,@shadow_y:0,@shadow_rad:10px,@shadow_spread:0,@shadow_color:#888){#shadow .inset .two-sides .left-right((@shadow_x+@shadow_y)/2,@shadow_rad,@shadow_spread,@shadow_color);}
+.inner_box_shadow_top_bottom(@shadow_x:0,@shadow_y:0,@shadow_rad:10px,@shadow_spread:0,@shadow_color:#888){#shadow .inset .two-sides .top-bottom((@shadow_x+@shadow_y)/2,@shadow_rad,@shadow_spread,@shadow_color);}
+.inner_box_shadow_left(@shadow_x:0,@shadow_y:0,@shadow_rad:10px,@shadow_spread:0,@shadow_color:#888){#shadow .inset .one-side .left(@shadow_x,@shadow_rad,@shadow_spread,@shadow_color);}
+.inner_box_shadow_right(@shadow_x:0,@shadow_y:0,@shadow_rad:10px,@shadow_spread:0,@shadow_color:#888){#shadow .inset .one-side .right(@shadow_x,@shadow_rad,@shadow_spread,@shadow_color);}
+.inner_box_shadow_top(@shadow_x:0,@shadow_y:0,@shadow_rad:10px,@shadow_spread:0,@shadow_color:#888){#shadow .inset .one-side .top(@shadow_y,@shadow_rad,@shadow_spread,@shadow_color);}
+.inner_box_shadow_bottom(@shadow_x:0,@shadow_y:0,@shadow_rad:10px,@shadow_spread:0,@shadow_color:#888){#shadow .inset .one-side .bottom(@shadow_y,@shadow_rad,@shadow_spread,@shadow_color);}
+.inner_box_shadow_top_u(@shadow_x:0,@shadow_y:0,@shadow_rad:10px,@shadow_spread:0,@shadow_color:#888){#shadow .inset .three-sides .top((@shadow_x+@shadow_y)/2,@shadow_rad,@shadow_spread,@shadow_color);}
+.inner_box_shadow_bottom_u(@shadow_x:0,@shadow_y:0,@shadow_rad:10px,@shadow_spread:0,@shadow_color:#888){#shadow .inset .three-sides .bottom((@shadow_x+@shadow_y)/2,@shadow_rad,@shadow_spread,@shadow_color);}
+.inner_box_shadow_top_left(@shadow_x:0,@shadow_y:0,@shadow_rad:10px,@shadow_spread:0,@shadow_color:#888){#shadow .inset .corner .top-left((@shadow_x+@shadow_y)/2,@shadow_rad,@shadow_spread,@shadow_color);}
+.inner_box_shadow_top_right(@shadow_x:0,@shadow_y:0,@shadow_rad:10px,@shadow_spread:0,@shadow_color:#888){#shadow .inset .corner .top-right((@shadow_x+@shadow_y)/2,@shadow_rad,@shadow_spread,@shadow_color);}
