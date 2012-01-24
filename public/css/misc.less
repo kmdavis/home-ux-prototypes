@@ -1,0 +1,56 @@
+.bg-slide-under-text-wrapper {
+  @height: 400px;
+  @width: 1280px;
+
+  height: @height;
+  overflow: hidden;
+  position: relative;
+
+  .background1 {
+    background-color: #000;
+    height: @height;
+
+    span {
+      color: #fff;
+      display: block;
+      font-size: 72px;
+      position: absolute;
+      text-align: center;
+      top: @height / 4;
+      width: @width;
+    }
+  }
+
+  .background2 {
+    .transition(all, 1s, linear);
+
+    background-color: #fff;
+    height: @height;
+    overflow: hidden;
+    position: absolute;
+    top: @height;
+    width: @width;
+
+    span {
+      .transition(all, 1s, linear);
+      
+      color: #000;
+      display: block;
+      font-size: 72px;
+      position: absolute;
+      text-align: center;
+      top: @height / 4 - @height;
+      width: @width;
+    }
+  }
+
+  &:hover {
+    .background2 {
+      top: 0;
+
+      span {
+        top: @height / 4
+      }
+    }
+  }
+}
