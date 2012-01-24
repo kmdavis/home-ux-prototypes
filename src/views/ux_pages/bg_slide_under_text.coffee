@@ -1,5 +1,8 @@
 div class: "bg-slide-under-text-wrapper", ->
   div class: "background1", ->
-    span "Testing"
+    span "Lorem Ipsum"
   div class: "background2", ->
-    span "Testing"
+    span ->
+      text "Lorem Ipsum"
+      br ""
+      small "Dolor sit amet, consectetur adipisicing elit"
